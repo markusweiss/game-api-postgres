@@ -1,8 +1,6 @@
-import { Model } from 'sequelize/types';
-
+import { Model } from 'sequelize';
 interface DataAttributes {
-	id: string;
-	playername: string;
+	gamer: string;
 	score: string;
 }
 

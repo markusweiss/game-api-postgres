@@ -1,6 +1,6 @@
 class Validator {
 	checkRead() {
-		console.log('validate');
+		console.log('validate is checking comming soon');
 	}
 }
 

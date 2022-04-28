@@ -1,13 +1,16 @@
 import express from 'express';
-import Middleware from '../middleware';
-import Validator from '../validator';
+import Controller from '../controller';
 
 const router = express.Router();
 
 router.get(
+	'/',
+	Controller.api
+);
+
+router.get(
 	'/read',
-	Middleware.handleValidationError,
-	Validator.checkRead
+	Controller.read
 );
 
 export default router;

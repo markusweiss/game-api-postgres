@@ -1,9 +1,9 @@
 import cors from 'cors';
 import express from 'express';
-import db from './config/database.config';
+import pool from './config/database.config';
 import router from './route';
 
-db.connect().then(() => {
+pool.connect().then(() => {
 	console.log('Postgre connect ok');
 });
 

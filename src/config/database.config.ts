@@ -1,7 +1,7 @@
-import { Client } from 'pg';
+import { Pool } from 'pg';
 
-const db = new Client({
-	host: '192.168.178.54',
+const pool = new Pool({
+	host: 'localhost',
 	port: 5455,
 	user: 'postgres',
 	password: '12345678',
@@ -9,4 +9,4 @@ const db = new Client({
 	
 });
 
-export default db;
+export default pool;
