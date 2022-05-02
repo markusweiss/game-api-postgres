@@ -17,18 +17,28 @@ class Controller {
 			});
 		}
 	}
-    
+	/*
+	async read(req: Request, res: Response) {
+		pg.connect(onConnect);
+		function onConnect(err, client, release) {
+			if (err) return res.send(err);
+			client.query('SELECT * from gamescore', function onResult(err, result) {
+				release();
+				res.send(err || result.rows);
+			});
+		}
+	}
+    */
+
 	async read(req: Request, res: Response) {
 		try {
 			const client = await pool.connect();
 			const queryString = 'SELECT * FROM gamescore';
 			client.query(
-				queryString
-			).then(res => {
-				client.release();
-				console.log(res.rows[0]);
-			});
-			res.status(200).send(res);
+				queryString, function onResult(err, result) {
+					client.release();
+					res.send(err || result.rows);
+				});
 		} catch (e) {
 			return res.json({
 				msg: 'fail to read record',
