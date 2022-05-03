@@ -17,28 +17,11 @@ class Controller {
 			});
 		}
 	}
-	/*
-	async read(req: Request, res: Response) {
-		pg.connect(onConnect);
-		function onConnect(err, client, release) {
-			if (err) return res.send(err);
-			client.query('SELECT * from gamescore', function onResult(err, result) {
-				release();
-				res.send(err || result.rows);
-			});
-		}
-	}
-    */
 
-	async read(req: Request, res: Response) {
+	async readAll(req: Request, res: Response) {
 		try {
-			const client = await pool.connect();
-			const queryString = 'SELECT * FROM gamescore';
-			client.query(
-				queryString, function onResult(err, result) {
-					client.release();
-					res.send(err || result.rows);
-				});
+			const result = await pool.query('SELECT * FROM gamescore');
+			res.json(result.rows);
 		} catch (e) {
 			return res.json({
 				msg: 'fail to read record',
@@ -47,6 +30,43 @@ class Controller {
 			});
 		}
 	}
+
+	async readID(req: Request, res: Response) {
+		try {
+			const { id } = req.params;
+			const result = await pool.query('SELECT * FROM gamescore WHERE id = $1', [id]);
+        
+			if (result.rows.length === 0)
+				return res.status(404).json({ message: 'Task not found' });
+        
+			res.json(result.rows[0]);
+		} catch (e) {
+			return res.json({
+				msg: 'fail to read id',
+				status: 500,
+				route: '/readID'
+			});
+		}
+	}
+
+	async create(req: Request, res: Response) {
+		try {
+			const { gamer, score } = req.body;
+        
+			const newTask = await pool.query(
+				'INSERT INTO gamescore (gamer, score) VALUES($1, $2) RETURNING *',
+				[gamer, score]
+			);
+			res.json(newTask.rows[0]);
+		}catch (e) {
+			return res.json({
+				msg: 'fail to create',
+				status: 500,
+				route: '/create'
+			});
+		}
+	}
+
 }
 
 export default new Controller();

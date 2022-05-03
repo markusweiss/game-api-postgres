@@ -9,8 +9,18 @@ router.get(
 );
 
 router.get(
-	'/read',
-	Controller.read
+	'/readAll',
+	Controller.readAll
+);
+
+router.get(
+	'/readID/:id',
+	Controller.readID
+);
+
+router.post(
+	'/create/',
+	Controller.create
 );
 
 export default router;
