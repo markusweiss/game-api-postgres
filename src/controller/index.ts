@@ -20,11 +20,11 @@ class Controller {
 
 	async readAll(req: Request, res: Response) {
 		try {
-			const result = await pool.query('SELECT * FROM gamescore');
+			const result = await pool.query('SELECT * FROM gamescore ORDER BY score DESC');
 			res.json(result.rows);
 		} catch (e) {
 			return res.json({
-				msg: 'fail to read record',
+				msg: 'fail to read gamescores',
 				status: 500,
 				route: '/read'
 			});
@@ -37,7 +37,7 @@ class Controller {
 			const result = await pool.query('SELECT * FROM gamescore WHERE id = $1', [id]);
         
 			if (result.rows.length === 0)
-				return res.status(404).json({ message: 'Task not found' });
+				return res.status(404).json({ message: 'Game Result not found' });
         
 			res.json(result.rows[0]);
 		} catch (e) {
@@ -60,7 +60,7 @@ class Controller {
 			res.json(newTask.rows[0]);
 		}catch (e) {
 			return res.json({
-				msg: 'fail to create',
+				msg: 'fail to create game result',
 				status: 500,
 				route: '/create'
 			});

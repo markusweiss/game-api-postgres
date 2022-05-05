@@ -1,6 +1,15 @@
+import { query } from 'express-validator';
 class Validator {
-	checkRead() {
-		console.log('validate is checking comming soon');
+	checkCreate() {
+		return [
+			query('gamer')
+				.notEmpty()
+				.withMessage('Gamer should not be empty'),
+			query('score')
+				.notEmpty() 
+				.isNumeric()
+				.withMessage('Score have to be a number')
+		];
 	}
 }
 
