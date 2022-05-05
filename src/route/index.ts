@@ -19,6 +19,7 @@ router.get(
 
 router.get(
 	'/readID/:id',
+	Validator.checkId(),
 	middleware.handleValidationError,
 	Controller.readID
 );

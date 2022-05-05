@@ -35,11 +35,13 @@ class Controller {
 		try {
 			const { id } = req.params;
 			const result = await pool.query('SELECT * FROM gamescore WHERE id = $1', [id]);
-        
+
 			if (result.rows.length === 0)
-				return res.status(404).json({ message: 'Game Result not found' });
-        
+				return res.status(404).json({ 
+					message: 'Game Result not found' 
+				});
 			res.json(result.rows[0]);
+
 		} catch (e) {
 			return res.json({
 				msg: 'fail to read id',
@@ -52,7 +54,7 @@ class Controller {
 	async create(req: Request, res: Response) {
 		try {
 			const { gamer, score } = req.body;
-        
+
 			const newTask = await pool.query(
 				'INSERT INTO gamescore (gamer, score) VALUES($1, $2) RETURNING *',
 				[gamer, score]

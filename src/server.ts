@@ -1,4 +1,5 @@
 import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import pool from './config/database.config';
 import router from './route';
