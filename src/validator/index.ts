@@ -1,14 +1,14 @@
-import { query } from 'express-validator';
+import { body } from 'express-validator';
 class Validator {
 	checkCreate() {
 		return [
-			query('gamer')
+			body('gamer')
 				.notEmpty()
 				.withMessage('Gamer should not be empty'),
-			query('score')
+			body('score')
 				.notEmpty() 
 				.isNumeric()
-				.withMessage('Score have to be a number')
+				.withMessage('Score has to be a number')
 		];
 	}
 }
