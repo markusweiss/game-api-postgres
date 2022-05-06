@@ -1,5 +1,4 @@
-import { DataTypes, Model } from 'sequelize';
-import db from '../config/database.config';
+import { DataTypes, Model, Sequelize } from 'sequelize';
 interface DataAttributes {
 	id: string;
 	gamer: string;
@@ -27,8 +26,7 @@ DataInstance.init(
 		}
 	},
 	{
-		sequelize: db,
-		tableName: 'gamescore'
-
+		tableName: 'gamescore',
+		sequelize: new Sequelize
 	}
 );
