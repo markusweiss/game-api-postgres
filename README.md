@@ -16,3 +16,5 @@ Installed local postgres Docker Container.
 
     npm run dev
 
+# push
+
