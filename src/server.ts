@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use('/api/', router);
+app.use('/', router);
 
 app.listen(nodeEnv || 3000, '0.0.0.0', () => {
 	console.log('Node Server is running.');

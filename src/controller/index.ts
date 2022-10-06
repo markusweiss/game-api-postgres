@@ -26,7 +26,7 @@ class Controller {
 			return res.json({
 				msg: 'fail to read gamescores',
 				status: 500,
-				route: '/read'
+				route: '/readAll'
 			});
 		}
 	}
