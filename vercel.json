@@ -3,13 +3,18 @@
     "builds": [
       {
         "src": "/src/*.*",
-        "use": "@now/static-build"
+        "use": "@now/node"
+      },
+      {
+        "src": "/package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "dist" }
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "server.js"
+        "dest": "dist/src/server.js"
       }
     ]
   }
