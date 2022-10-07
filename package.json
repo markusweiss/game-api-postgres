@@ -2,7 +2,7 @@
 	"name": "game-api",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"dev": "ts-node-dev --respawn src/server.ts",
 		"eslint": "eslint \"src/**/*.{ts,tsx}\" --fix",
