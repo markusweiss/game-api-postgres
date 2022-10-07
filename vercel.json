@@ -3,14 +3,14 @@
     "name": "gaming-api",
     "builds": [
         { 
-            "src": "/src/*.*", 
+            "src": "dist/src/*.*", 
             "use": "@vercel/node" 
         }
     ],
     "routes": [
         { 
             "src": "/(.*)", 
-            "dest": "./dist/src/server.js" 
+            "dest": "dist/src/server.js" 
         }
     ]
 }
